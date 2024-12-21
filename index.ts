@@ -12,11 +12,21 @@ const agent = new BskyAgent({
 
 
 async function main() {
-    await agent.login({ identifier: process.env.BLUESKY_USERNAME!, password: process.env.BLUESKY_PASSWORD!})
-    await agent.post({
-        text: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-    });
-    console.log("Just posted!")
+    console.log("Starting main function...");
+    try {
+        await agent.login({ 
+            identifier: process.env.BLUESKY_USERNAME!, 
+            password: process.env.BLUESKY_PASSWORD! 
+        });
+        console.log("Login successful!");
+
+        await agent.post({
+            text: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+        });
+        console.log("Just posted!");
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
 }
 
 main();
