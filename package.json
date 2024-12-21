@@ -7,6 +7,6 @@
     "typescript": "^5.7.2"
   },
   "scripts": {
-    "start": "ts-node /home/liefwerk/code/oss/meditation-bot/index.ts"
+    "start": "ts-node ./index.ts"
   }
 }
