@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@atproto/api": "^0.13.22",
+    "cron": "^3.3.1",
+    "dotenv": "^16.4.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "scripts": {
+    "start": "ts-node /home/liefwerk/code/oss/meditation-bot/index.ts"
+  }
+}
