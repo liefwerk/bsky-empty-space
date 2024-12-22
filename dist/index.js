@@ -45,27 +45,40 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const api_1 = require("@atproto/api");
 const dotenv = __importStar(require("dotenv"));
 const process = __importStar(require("process"));
+const fs = __importStar(require("fs"));
+const path = __importStar(require("path"));
 dotenv.config();
-// Create a Bluesky Agent 
+const logToFile = (message) => {
+    const timestamp = new Date().toISOString();
+    const logMessage = `[${timestamp}] ${message}\n`;
+    fs.appendFileSync(path.join(__dirname, 'app.log'), logMessage);
+    console.log(logMessage);
+};
 const agent = new api_1.BskyAgent({
     service: 'https://bsky.social'
 });
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log("Starting main function...");
+        logToFile("Starting main function...");
+        // Verify env variables are present
+        if (!process.env.BLUESKY_USERNAME || !process.env.BLUESKY_PASSWORD) {
+            logToFile("ERROR: Missing environment variables!");
+            process.exit(1);
+        }
         try {
             yield agent.login({
                 identifier: process.env.BLUESKY_USERNAME,
                 password: process.env.BLUESKY_PASSWORD
             });
-            console.log("Login successful!");
+            logToFile("Login successful!");
             yield agent.post({
-                text: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                text: "\n".repeat(300) // More efficient way to create many newlines
             });
-            console.log("Just posted!");
+            logToFile("Post successful!");
         }
         catch (error) {
-            console.error("An error occurred:", error);
+            logToFile(`ERROR: ${error instanceof Error ? error.message : String(error)}`);
+            process.exit(1);
         }
     });
 }
