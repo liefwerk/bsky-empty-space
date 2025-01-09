@@ -54,8 +54,12 @@ const logToFile = (message) => {
     fs.appendFileSync(path.join(__dirname, 'app.log'), logMessage);
     console.log(logMessage);
 };
-const agent = new api_1.BskyAgent({
-    service: 'https://bsky.social'
+// configure connection to the server, without account authentication
+const agent = new api_1.AtpAgent({
+    service: 'https://bsky.social',
+    persistSession: (evt, sess) => {
+        // store the session-data for reuse
+    },
 });
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -72,7 +76,7 @@ function main() {
             });
             logToFile("Login successful!");
             yield agent.post({
-                text: "\n".repeat(300) // More efficient way to create many newlines
+                text: "\n".repeat(150) // More efficient way to create many newlines
             });
             logToFile("Post successful!");
         }

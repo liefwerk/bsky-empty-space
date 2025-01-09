@@ -1,4 +1,4 @@
-import { BskyAgent } from '@atproto/api';
+import { AtpAgent, AtpSessionEvent, AtpSessionData } from '@atproto/api'
 import * as dotenv from 'dotenv';
 import * as process from 'process';
 import * as fs from 'fs';
@@ -13,9 +13,14 @@ const logToFile = (message: string) => {
     console.log(logMessage);
 };
 
-const agent = new BskyAgent({
-    service: 'https://bsky.social'
-});
+
+// configure connection to the server, without account authentication
+const agent = new AtpAgent({
+  service: 'https://bsky.social',
+  persistSession: (evt: AtpSessionEvent, sess?: AtpSessionData) => {
+    // store the session-data for reuse
+  },
+})
 
 async function main() {
     logToFile("Starting main function...");
@@ -34,7 +39,7 @@ async function main() {
         logToFile("Login successful!");
 
         await agent.post({
-            text: "\n".repeat(300)  // More efficient way to create many newlines
+            text: "\n".repeat(150)  // More efficient way to create many newlines
         });
         logToFile("Post successful!");
     } catch (error) {
