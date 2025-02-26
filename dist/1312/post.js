@@ -18,6 +18,20 @@ function treizeDouzePost() {
             (0, shared_1.logToFile)("ERROR: Missing environment variables!");
             process.exit(1);
         }
+        const phrases = [
+            "oui, il est bien 13h12 !",
+            "il est 13h12.",
+            "je confirme qu'il est 13h12.",
+            "*regarde sa montre* - ouais, il est bien 13h12 :)",
+            "AAAAAAAAAAAAAH ! 1312 1312 1312 1312 1312 1312 1312 1312",
+            "13h12, il est.",
+            "il est 13h12, c'est l'heure de poster '1312'.",
+            "ouaip, 13h12.",
+            "yes, il est bien 13h12 \\o/",
+            "1312",
+            "1312 ".repeat(150),
+        ];
+        const phrase = phrases[Math.floor(Math.random() * phrases.length)];
         try {
             (0, shared_1.logToFile)("Logging in...");
             yield shared_1.agent.login({
@@ -26,7 +40,7 @@ function treizeDouzePost() {
             });
             (0, shared_1.logToFile)("Posting...");
             yield shared_1.agent.post({
-                text: "cc, ouais je sais il est toujours pas 13h12, purée j'ai hâte (ceci est un test, ignorez ce message)"
+                text: phrase
             });
             (0, shared_1.logToFile)("Posted successfully for 1312");
         }
