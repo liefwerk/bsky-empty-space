@@ -33,49 +33,21 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv = __importStar(require("dotenv"));
-const process = __importStar(require("process"));
-// Import the functions from the other files
-const like_1 = require("./blankspace/like");
-const post_1 = require("./blankspace/post");
-const post_2 = require("./1312/post");
-// Import the shared functions
-const shared_1 = require("./shared");
-dotenv.config();
-function handleBlankSpaceAction(action) {
-    switch (action) {
-        case 'like':
-            (0, like_1.blankSpaceLike)();
-            break;
-        case 'post':
-            (0, post_1.blankSpacePost)();
-            break;
-        default:
-            (0, shared_1.logToFile)("ERROR: Invalid action argument for blankspace");
-            process.exit(1);
-    }
-}
-function handle1312Action(action) {
-    switch (action) {
-        case 'post':
-            (0, post_2.treizeDouzePost)();
-            break;
-        default:
-            (0, shared_1.logToFile)("ERROR: Invalid action argument for 1312");
-            process.exit(1);
-    }
-}
-function handleProject(project, action) {
-    switch (project) {
-        case 'blankspace':
-            handleBlankSpaceAction(action);
-            break;
-        case '1312':
-            handle1312Action(action);
-            break;
-        default:
-            (0, shared_1.logToFile)("ERROR: Invalid project argument");
-            process.exit(1);
-    }
-}
-handleProject(process.argv[2], process.argv[3]);
+exports.sleep = exports.agent = exports.logToFile = void 0;
+const api_1 = require("@atproto/api");
+const fs = __importStar(require("fs"));
+const path = __importStar(require("path"));
+const logToFile = (message) => {
+    const timestamp = new Date().toISOString();
+    const logMessage = `[${timestamp}] ${message}\n`;
+    fs.appendFileSync(path.join(__dirname, 'app.log'), logMessage);
+};
+exports.logToFile = logToFile;
+exports.agent = new api_1.AtpAgent({
+    service: 'https://bsky.social',
+    persistSession: (evt, sess) => { }
+});
+const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+};
+exports.sleep = sleep;
