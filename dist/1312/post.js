@@ -24,6 +24,7 @@ function treizeDouzePost() {
             "*regarde sa montre* - ouais, il est bien 13h12 :)",
             "AAAAAAAAAAAAAH ! 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312",
             "OH MON DIEU !!!! IL EST 13H12 !",
+            "Il était 13h12 mais tu l'as vu trop tard. C'est pas grave, continue de scroller tu l'auras la prochaine fois.",
             "il est 13h12, c'est l'heure de reblousker '1312' sur bluesky.",
             "ouaip, 13h12.",
             "yes, il est bien 13h12 \\o/",
