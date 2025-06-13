@@ -39,6 +39,7 @@ const process = __importStar(require("process"));
 const like_1 = require("./blankspace/like");
 const post_1 = require("./blankspace/post");
 const post_2 = require("./1312/post");
+const like_2 = require("./1312/like");
 // Import the shared functions
 const shared_1 = require("./shared");
 dotenv.config();
@@ -59,6 +60,9 @@ function handle1312Action(action) {
     switch (action) {
         case 'post':
             (0, post_2.treizeDouzePost)();
+            break;
+        case 'like':
+            (0, like_2.treizeDouzeLike)();
             break;
         default:
             (0, shared_1.logToFile)("ERROR: Invalid action argument for 1312");

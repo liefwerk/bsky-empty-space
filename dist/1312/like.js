@@ -9,45 +9,38 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.treizeDouzePost = treizeDouzePost;
+exports.treizeDouzeLike = treizeDouzeLike;
 const shared_1 = require("../shared");
-function treizeDouzePost() {
+function treizeDouzeLike() {
     return __awaiter(this, void 0, void 0, function* () {
         // Verify env variables are present
         if (!process.env.TREIZEDOUZE_USERNAME || !process.env.TREIZEDOUZE_PASSWORD) {
             (0, shared_1.logToFile)("ERROR: Missing environment variables!");
             process.exit(1);
         }
-        const phrases = [
-            "1312 ".repeat(50),
-            "ACAB (ouais)",
-            "🤖 < 00110001 00110011 00110001 00110010",
-            "Autre Fun Fact: En France, il est 13h12 au moins une fois par jour.",
-            "🤖 < 0x31333132",
-            "Ding Dong, it's cop hating hour",
-            "Entendu en concert : 'Les flics sont des sacs à merde.'",
-            "il est 13h12, c'est l'heure de reblousker '1312' sur bluesky.",
-            "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH !",
-            "🤓 < MTMxMg==",
-            "TREIZE DOUZE",
-            "ACCCABB",
-            "Le matin: ACAB. Le midi: ACAB. Au goûter: ACAB. Le soir: ACAB. En insomnie ? ACAB.",
-            "Il était 13h12 mais tu l'as vu trop tard. C'est pas grave, continue de scroller tu l'auras la prochaine fois.",
-            "Fun Fact: Une fois par heure, il est 13h12 quelquepart dans le monde.",
-            "1312!"
-        ];
-        const phrase = phrases[Math.floor(Math.random() * phrases.length)];
         try {
-            (0, shared_1.logToFile)("Logging in...");
             yield shared_1.agent.login({
                 identifier: process.env.TREIZEDOUZE_USERNAME,
                 password: process.env.TREIZEDOUZE_PASSWORD
             });
-            (0, shared_1.logToFile)("Posting...");
-            yield shared_1.agent.post({
-                text: phrase
+            const query = "flic";
+            let { data } = yield shared_1.agent.app.bsky.feed.searchPosts({
+                q: query,
+                limit: 100,
+            }, {
+                headers: {
+                    "Accept-Language": "fr",
+                }
             });
-            (0, shared_1.logToFile)("Posted successfully for 1312");
+            (0, shared_1.logToFile)(`Fetched ${data.posts.length} posts with query "${query}"`);
+            const { posts: postsArray, cursor: nextPage } = data;
+            postsArray.forEach((item) => __awaiter(this, void 0, void 0, function* () {
+                let uri = item.uri;
+                let cid = item.cid;
+                if (uri && cid) {
+                    yield shared_1.agent.like(uri, cid);
+                }
+            }));
         }
         catch (error) {
             (0, shared_1.logToFile)(`ERROR: ${error instanceof Error ? error.message : String(error)}`);

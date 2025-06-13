@@ -10,6 +10,7 @@
     "blankspace-post": "node dist/index.js blankspace post",
     "blankspace-like": "node dist/index.js blankspace like",
     "1312-post": "node dist/index.js 1312 post",
+    "1312-like": "node dist/index.js 1312 like",
     "build": "tsc",
     "dev": "tsc --watch"
   }

@@ -9,17 +9,19 @@ export async function treizeDouzePost() {
 
     const phrases = [
         "1312 ".repeat(50),
-        "oui, il est bien 13h12 !",
-        "*regarde sa montre* - ouais, il est bien 13h12 :)",
-        "AAAAAAAAAAAAAH ! 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312 1312",
-        "OH MON DIEU !!!! IL EST 13H12 !",
-        "Il était 13h12 mais tu l'as vu trop tard. C'est pas grave, continue de scroller tu l'auras la prochaine fois.",
-        "il est 13h12, c'est l'heure de reblousker '1312' sur bluesky.",
-        "ouaip, 13h12.",
-        "yes, il est bien 13h12 \\o/",
+        "ACAB (ouais)",
         "🤖 < 00110001 00110011 00110001 00110010",
+        "Autre Fun Fact: En France, il est 13h12 au moins une fois par jour.",
         "🤖 < 0x31333132",
+        "Ding Dong, it's cop hating hour",
+        "Entendu en concert : 'Les flics sont des sacs à merde.'",
+        "il est 13h12, c'est l'heure de reblousker '1312' sur bluesky.",
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH !",
         "🤓 < MTMxMg==",
+        "TREIZE DOUZE",
+        "ACCCABB",
+        "Le matin: ACAB. Le midi: ACAB. Au goûter: ACAB. Le soir: ACAB. En insomnie ? ACAB.",
+        "Il était 13h12 mais tu l'as vu trop tard. C'est pas grave, continue de scroller tu l'auras la prochaine fois.",
         "Fun Fact: Une fois par heure, il est 13h12 quelquepart dans le monde.",
         "1312!"
     ];

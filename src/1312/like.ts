@@ -1,39 +1,31 @@
 import { agent, logToFile } from "../shared";
 
-export async function blankSpaceLike() {
+export async function treizeDouzeLike() {
     // Verify env variables are present
-    if (!process.env.BLANKSPACE_USERNAME || !process.env.BLANKSPACE_PASSWORD) {
+    if (!process.env.TREIZEDOUZE_USERNAME || !process.env.TREIZEDOUZE_PASSWORD) {
         logToFile("ERROR: Missing environment variables!");
         process.exit(1);
     }
 
     try {
         await agent.login({
-            identifier: process.env.BLANKSPACE_USERNAME,
-            password: process.env.BLANKSPACE_PASSWORD
+            identifier: process.env.TREIZEDOUZE_USERNAME,
+            password: process.env.TREIZEDOUZE_PASSWORD
         });
 
+        const query = "flic";
+
         let { data } = await agent.app.bsky.feed.searchPosts({
-            q: "mental health",
+            q: query,
             limit: 100,
         },
         {
             headers: {
-                "Accept-Language": "en,fr,es",
+                "Accept-Language": "fr",
             }
         });
 
-        // let { data } = await agent.app.bsky.feed.getFeed({
-        //     feed: "at://did:plc:rxuniw3kvxygkka2kszseeyw/app.bsky.feed.generator/aaadzt2eacfci", // abstract art
-        //     limit: 10
-        // },
-        // {
-        //     headers: {
-        //         "Accept-Language": "en,fr,es",
-        //     }
-        // });
-
-        logToFile(`Fetched ${data.posts.length} posts`);
+        logToFile(`Fetched ${data.posts.length} posts with query "${query}"`);
 
         const { posts: postsArray, cursor: nextPage } = data;
 
@@ -44,7 +36,6 @@ export async function blankSpaceLike() {
 
             if (uri && cid) {
                 await agent.like(uri, cid)
-                logToFile(`Liked post ${uri} with cid ${cid}`);
             }
 
         });

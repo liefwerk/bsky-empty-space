@@ -23,22 +23,31 @@ function blankSpaceLike() {
                 identifier: process.env.BLANKSPACE_USERNAME,
                 password: process.env.BLANKSPACE_PASSWORD
             });
-            let { data } = yield shared_1.agent.app.bsky.feed.getFeed({
-                feed: "at://did:plc:rxuniw3kvxygkka2kszseeyw/app.bsky.feed.generator/aaadzt2eacfci", // abstract art
-                limit: 10
+            let { data } = yield shared_1.agent.app.bsky.feed.searchPosts({
+                q: "mental health",
+                limit: 100,
             }, {
                 headers: {
                     "Accept-Language": "en,fr,es",
                 }
             });
-            (0, shared_1.logToFile)(`Fetched ${data.feed.length} posts`);
-            const { feed: postsArray, cursor: nextPage } = data;
+            // let { data } = await agent.app.bsky.feed.getFeed({
+            //     feed: "at://did:plc:rxuniw3kvxygkka2kszseeyw/app.bsky.feed.generator/aaadzt2eacfci", // abstract art
+            //     limit: 10
+            // },
+            // {
+            //     headers: {
+            //         "Accept-Language": "en,fr,es",
+            //     }
+            // });
+            (0, shared_1.logToFile)(`Fetched ${data.posts.length} posts`);
+            const { posts: postsArray, cursor: nextPage } = data;
             postsArray.forEach((item) => __awaiter(this, void 0, void 0, function* () {
-                let uri = item.post.uri;
-                let cid = item.post.cid;
+                let uri = item.uri;
+                let cid = item.cid;
                 if (uri && cid) {
                     yield shared_1.agent.like(uri, cid);
-                    (0, shared_1.logToFile)(`Liked post ${uri}`);
+                    (0, shared_1.logToFile)(`Liked post ${uri} with cid ${cid}`);
                 }
             }));
         }

@@ -6,6 +6,7 @@ import { blankSpaceLike } from './blankspace/like';
 import { blankSpacePost } from './blankspace/post';
 
 import { treizeDouzePost } from './1312/post';
+import { treizeDouzeLike } from './1312/like';
 
 // Import the shared functions
 import { logToFile } from './shared';
@@ -30,6 +31,9 @@ function handle1312Action(action: string) {
     switch (action) {
         case 'post':
             treizeDouzePost();
+            break;
+        case 'like':
+            treizeDouzeLike();
             break;
         default:
             logToFile("ERROR: Invalid action argument for 1312");
