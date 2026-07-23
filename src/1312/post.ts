@@ -38,14 +38,10 @@ export async function treizeDouzePost() {
     const phrase = isTreizeDouze ? "Super fun cool fact, aujourd'hui c'est le jour du 1312 !" : phrases[Math.floor(Math.random() * phrases.length)];
     
     try {
-
-        logToFile("Logging in...");
         await agent.login({
             identifier: process.env.TREIZEDOUZE_USERNAME,
             password: process.env.TREIZEDOUZE_PASSWORD
         });
-
-        logToFile("Posting...");
         await agent.post({
             text: phrase
         });
