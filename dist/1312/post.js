@@ -11,6 +11,7 @@ async function treizeDouzePost() {
     const phrases = [
         "1312 ".repeat(50),
         "ACAB (ouais)",
+        "Rappel quotidien: taguer ACAB sur un mur",
         "🤖 < 00110001 00110011 00110001 00110010",
         "Autre Fun Fact: A chaque ACAB tagué sur un mur, un petit chaton nait.",
         "ACAB includes Inspecteur Gadget",
@@ -30,7 +31,7 @@ async function treizeDouzePost() {
         "Il était 13h12 mais tu l'as vu trop tard. C'est pas grave, continue de scroller tu l'auras la prochaine fois.",
         "Fun Fact: Une fois par heure, il est 13h12 quelquepart dans le monde.",
         "1312!",
-        "(A+C)+(A+B)=1312",
+        "(A-C)*(A+B)=1312",
         "Pro Tip: Évitez d'utiliser ACAB comme mot de passe, préférez plutôt 4C48 c'est plus safe.",
     ];
     const today = new Date();
