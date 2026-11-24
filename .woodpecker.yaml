@@ -1,0 +1,15 @@
+when:
+  - event: push
+    branch: main
+
+steps:
+  - name: build-and-deploy
+    image: node:20-alpine
+    volumes:
+      - ~/apps/empty-space
+    commands:
+      - npm ci
+      - npm run build
+      - npm prune --omit=dev
+      - find /deploy -mindepth 1 ! -name '.env' -delete
+      - cp -r dist package.json node_modules /deploy/
