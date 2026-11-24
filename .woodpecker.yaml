@@ -6,9 +6,9 @@ steps:
   - name: build-and-deploy
     image: node:20-alpine
     volumes:
-      - /home/liefwerk/apps/empty-space
+      - /home/liefwerk/apps/empty-space:/deploy
     commands:
-      - npm ci
+      - npm install
       - npm run build
       - npm prune --omit=dev
       - find /deploy -mindepth 1 ! -name '.env' -delete
