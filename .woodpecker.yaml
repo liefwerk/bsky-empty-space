@@ -6,7 +6,7 @@ steps:
   - name: build-and-deploy
     image: node:20-alpine
     volumes:
-      - ~/apps/empty-space
+      - /home/liefwerk/apps/empty-space
     commands:
       - npm ci
       - npm run build
