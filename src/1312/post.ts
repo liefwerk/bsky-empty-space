@@ -13,7 +13,6 @@ export async function treizeDouzePost() {
         "Rappel quotidien: taguer ACAB sur un mur",
         "🤖 < 00110001 00110011 00110001 00110010",
         "Autre Fun Fact: A chaque ACAB tagué sur un mur, un petit chaton nait.",
-        "ACAB includes Inspecteur Gadget",
         "🤖 < 0x31333132",
         "Ding Ding, it's cop hating hour",
         "Affirmation positive du jour: ACAB",
